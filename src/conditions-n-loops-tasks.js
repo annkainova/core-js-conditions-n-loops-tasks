@@ -100,8 +100,11 @@ function canQueenCaptureKing(queen, king) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a + b <= c || b + c <= a || c + a <= b) {
+    return false;
+  }
+  return a === b || b === c || a === c;
 }
 
 /**
@@ -118,10 +121,50 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const romanNum = {
+    i: 'I',
+    iv: 'IV',
+    v: 'V',
+    ix: 'IX',
+    x: 'X',
+  };
+
+  let number = num;
+  let result = '';
+
+  while (number >= 10) {
+    result += romanNum.x;
+    number -= 10;
+  }
+
+  if (number >= 9) {
+    result += romanNum.ix;
+    number -= 9;
+  }
+
+  if (number >= 5) {
+    result += romanNum.v;
+    number -= 5;
+  }
+
+  if (number >= 4) {
+    result += romanNum.iv;
+    number -= 4;
+  }
+
+  while (number > 0) {
+    result += romanNum.i;
+    number -= 1;
+  }
+
+  return result;
 }
 
+convertToRomanNumerals(3);
+convertToRomanNumerals(8);
+convertToRomanNumerals(15);
+convertToRomanNumerals(40);
 /**
  * Converts a number to a string, replacing digits with words.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -137,9 +180,59 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let result = '';
+
+  for (let i = 0; i < numberStr.length; i += 1) {
+    const count = numberStr[i];
+    if (i > 0) {
+      result += ' ';
+    }
+    switch (count) {
+      case '0':
+        result += 'zero';
+        break;
+      case '1':
+        result += 'one';
+        break;
+      case '2':
+        result += 'two';
+        break;
+      case '3':
+        result += 'three';
+        break;
+      case '4':
+        result += 'four';
+        break;
+      case '5':
+        result += 'five';
+        break;
+      case '6':
+        result += 'six';
+        break;
+      case '7':
+        result += 'seven';
+        break;
+      case '8':
+        result += 'eight';
+        break;
+      case '9':
+        result += 'nine';
+        break;
+      case '-':
+        result += 'minus';
+        break;
+      case ',':
+      case '.':
+        result += 'point';
+        break;
+      default:
+        break;
+    }
+  }
+  return result;
 }
+
 
 /**
  * Determines whether a string is a palindrome.
