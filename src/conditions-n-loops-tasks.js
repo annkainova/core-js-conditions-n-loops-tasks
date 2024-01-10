@@ -233,7 +233,6 @@ function convertNumberToString(numberStr) {
   return result;
 }
 
-
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
